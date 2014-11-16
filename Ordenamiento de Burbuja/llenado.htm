@@ -1,0 +1,254 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Documento sin t&iacute;tulo</title>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+var MAX = 100;
+var arr = new Array(MAX);
+var cont = 0;
+var fecha = new Date();
+var tiempoIni = 0;
+
+function mCaso()
+{
+  for(y=0;y<MAX;y++)
+  {
+	arr[y] = y+1;
+  }
+  parent.numeros.document.close();
+  for(y=0;y<MAX;y++)
+  {
+    if(((y % 10) == 0) && y > 1)
+	{
+		parent.numeros.document.writeln("<br>");
+	}
+  	parent.numeros.document.writeln("<small>" + (y + 1) + "</small>) <b>" + arr[y] + "</b>");
+  }
+  return MAX;
+}
+
+function pCaso()
+{
+  for(y=MAX;y>0;y--)
+  {
+	arr[(MAX-y)] = y;
+  }
+  parent.numeros.document.close();
+  for(y=0;y<MAX;y++)
+  {
+    if(((y % 10) == 0) && y > 1)
+	{
+		parent.numeros.document.writeln("<br>");
+	}
+  	parent.numeros.document.writeln("<small>" + (y + 1) + "</small>) <b>" + arr[y] + "</b>");
+  }
+  return MAX;
+}
+
+function azar()
+{
+  for(y=cont;y<MAX;y++)
+  {
+	arr[y] = Math.round(MAX*Math.random());
+  }
+  parent.numeros.document.close();
+  for(y=0;y<MAX;y++)
+  {
+    if(((y % 10) == 0) && y > 1)
+	{
+		parent.numeros.document.writeln("<br>");
+	}
+  	parent.numeros.document.writeln("<small>" + (y + 1) + "</small>) <b>" + arr[y] + "</b>");
+  }
+  return MAX;
+}
+function agrega(elem) {
+  if(cont > (MAX-1))
+  {
+  	  alert("Lo sentimos, solo pueden agregarse hasta " + MAX + " elementos en la lista.");
+	  return MAX;
+  }
+  else if(isNaN(parseInt(elem)))
+  {
+  	  alert("Por favor ingrese un numero entero.");
+	  return(cont);
+  }
+  else
+  {
+  	  elem = parseInt(elem);
+	  //CODIGO OK:
+	  arr[cont] = elem;
+	  parent.numeros.document.writeln("<small>" + (cont + 1) + "</small>) <b>" + arr[cont] + "</b>");
+	  if((((cont+1) % 10) == 0) && cont > 2)
+	  {
+		parent.numeros.document.writeln("<br>");
+	  }
+	  //FIN CODIGO OK	  
+	  document.form1.test.value = elem;
+	  return(cont+1);
+  }	
+}
+
+function ordenar() {
+  arrTemp = arr;
+  for(y=1;y<cont;y++)
+  {
+  	for(j=0;j<(cont-1);j++)
+	{
+		if(parseInt(arrTemp[j]) > parseInt(arrTemp[j+1]))
+		{
+			temp = arrTemp[j];
+			arrTemp[j] = arrTemp[j+1];
+			arrTemp[j+1] = temp;
+		}
+	}
+  }
+  parent.orden.document.close();
+  parent.orden.document.write("<b>Lista ordenada de  " + cont + " elementos:</b><br><br>");
+  for(y=0;y<cont;y++)
+  {
+    if(((y % 10) == 0) && y > 1)
+	{
+		parent.orden.document.writeln("<br>");
+	}
+  	parent.orden.document.writeln("<small>" + (y + 1) + "</small>) <b>" + arrTemp[y] + "</b>");
+  }
+  fecha = new Date();
+  parent.orden.document.write("<br><br><b>El ordenamiento tomo " + ((fecha.getTime()-tiempoIni)/1000) + " segundos.</b><br><br>");
+}
+
+function ordenarM() {
+  arrTemp = arr;
+  for(y=1;y<cont;y++)
+  {
+  	for(j=0;j<(cont-y);j++)
+	{
+		if(parseInt(arrTemp[j]) > parseInt(arrTemp[j+1]))
+		{
+			temp = arrTemp[j];
+			arrTemp[j] = arrTemp[j+1];
+			arrTemp[j+1] = temp;
+		}
+	}
+  }
+  parent.orden.document.close();
+  parent.orden.document.write("<b>Lista ordenada de  " + cont + " elementos:</b><br><br>");
+  for(y=0;y<cont;y++)
+  {
+    if(((y % 10) == 0) && y > 1)
+	{
+		parent.orden.document.writeln("<br>");
+	}
+  	parent.orden.document.writeln("<small>" + (y + 1) + "</small>) <b>" + arrTemp[y] + "</b>");
+  }
+  fecha = new Date();
+  parent.orden.document.write("<br><br><b>El ordenamiento tomo " + ((fecha.getTime()-tiempoIni)/1000) + " segundos.</b><br><br>");
+}
+
+function reiniciar() {
+  parent.numeros.document.close();
+  parent.numeros.document.write("<b>Lista reiniciada.</b><br><br>");
+  parent.numeros.document.close();
+}
+
+function reiniciar() {
+  parent.numeros.document.close();
+  parent.numeros.document.write("<b>Lista reiniciada.</b><br><br>");
+  parent.numeros.document.close();
+}
+
+function cambiarMax(elem)
+{
+	if(isNaN(elem))
+	{
+		alert("Por favor ingrese un numero entero.");
+		document.form2.cantMax.value = MAX;
+		return(MAX);
+	}
+	else
+	{
+		if(MAX != elem)
+			alert('La cantidad maxima de elementos ha sido modificada. La lista debe ser llenada nuevamente para que el valor de ' + elem + ' sea considerado.')
+		document.form2.cantMax.value = elem;
+		return(elem);
+	}
+}
+
+//-->
+</script>
+<style type="text/css">
+<!--
+	table
+	{
+		font-size: 13px;
+		color: #990000;
+	}
+	
+	input
+	{
+		font-size: 10px;
+	}
+	.bold
+	{
+		font-weight: bold;
+	}
+-->
+</style>
+</head>
+
+<body bgcolor="#CCCCCC" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
+<table height="100%" width="100%"><tr valign="middle"><td>
+<table width="100%">
+  <tr> 
+    <form name="form1" id="form1" action="burp.htm" method="post">
+    <td valign="top" align="center"> 
+        <input name="temp" type="hidden" value="0">
+        <font class="bold">Elemento:</font> 
+        <input name="c" type="text" id="campo">
+	</td>
+    <td valign="top" align="center">	
+        Ultimo ingreso: 
+        <input name="test" type="text" id="campo" readonly="yes">
+    </td>
+    </form>
+    <td valign="top" align="right">
+	  <form name="form2" id="form2" action="burp.htm" method="post">
+        Maximo de elementos: 
+        <input name="cantMax" type="text" id="cantMax" value="100" size="4">
+      </form>
+	</td>
+    <td valign="top" align="left">
+		<input name="cMax" type="submit" id="cMax" value="Cambiar" onClick="MAX=cambiarMax(parseInt(document.form2.cantMax.value));"> 
+    </td>
+  </tr>
+  
+  <tr> 
+    <td valign="middle" align="center">
+		<input class="bold" name="agregar" type="submit" id="agregar" value="Agregar elemento" onClick="cont=agrega(document.form1.c.value)">
+		<input name="reiniciar" type="submit" id="reiniciar" onClick="cont=0;reiniciar()" value="Re-Iniciar lista"> 
+	</td>
+    <td valign="middle" align="center" width="*">
+		<table border="1">
+			<tr>
+				<td valign="middle" align="center">
+					Llenar lista: 
+				</td>
+				<td valign="middle" align="center">
+					<input name="azar" type="submit" id="azar" onClick="cont=azar()" value="Azar"> 
+					<input name="mCaso" type="submit" id="mCaso" onClick="cont=mCaso()" value="Mejor caso"> 
+					<input name="pCaso" type="submit" id="pCaso" onClick="cont=pCaso()" value="Peor caso"> 
+				</td>
+			</tr>
+		</table>
+	</td>
+    <td valign="middle" align="center" colspan="2">
+		<input class="bold" name="ordenar" type="submit" id="ordenar" onClick="fecha = new Date();tiempoIni = fecha.getTime();ordenar()" value="Ordenar"> 
+		<input name="ordenarM" type="submit" id="ordenarM" onClick="fecha = new Date();tiempoIni = fecha.getTime();ordenarM()" value="Ord. optimizado"> 
+	</td>
+  </tr>
+</table>
+</td></tr></table>
+
+</body>
+</html>
